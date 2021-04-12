@@ -1,0 +1,5 @@
+a WORKING play command(suprisingly, its done)
+a queue command
+bitcoin(done)
+more crypto currencies
+algerand 
