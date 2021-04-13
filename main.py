@@ -63,7 +63,7 @@ async def on_ready():
 
 @client.group(invoke_without_command = True)
 async def help(ctx):
-    em = discord.Embed(title = "Help", description = "**Do *<Command> to use the command!**", colour = discord.Colour.blue())
+    em = discord.Embed(title = "Help", description = "**Do *<Command> to use the command!**", colour = 0x440DA0)
     
     em.add_field(name = "Misc", value = "pong, say, inspire, twiki, urban")
     em.add_field(name = "Useful", value = "user, ping, join, leave")
@@ -229,6 +229,7 @@ async def show_queue(ctx, queue = queue):
     cqueue = (', '.join(queue))
     embed = discord.Embed()
     embed.description="**Your Current Queue**\n("f'{cqueue}'")"
+    embed.color = 0x440DA0
     await ctx.send(embed=embed)
 
 @client.command(aliases=["Skip",'sk','next'])
