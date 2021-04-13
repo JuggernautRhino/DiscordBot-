@@ -26,7 +26,7 @@ ydl_opts = {
     }],
 }
 queue=["https://www.youtube.com/watch?v=0lhhrUuw2N8"]
-
+loop = False
 
 
 def reverse(string):
@@ -77,6 +77,9 @@ async def on_member_join(member):
         f'Hi {member.name}, welcome to my Discord server!'
     )
 
+@client.command(aliases=["inf"])
+async def infinite(ctx):
+    await ctx.send("*inf")
 
 @client.command(aliases=['user','users','resu'])
 async def myid(ctx):
@@ -261,7 +264,21 @@ async def skip(ctx, queue = queue):
 
     voice.play(discord.FFmpegPCMAudio("song.mp3"))
 
+@client.command(aliases=["what?"])
+async def what(ctx, loop = loop):
+    await ctx.send(f'loop is {loop}')
 
+@client.command(aliases=["lo"])
+async def loop(ctx, loop = loop):
+    if loop == False:
+        loop = True
+        await ctx.send("Now Looping Queue")
+    elif loop == True:
+        loop == False
+        await ctx.send("Stopped Looping Queue")
+    else:
+        await ctx.send("somehow you've fucked the code up. You shithead")
+    return loop
 
 @client.command(aliases=["c"])
 async def clear(ctx):
