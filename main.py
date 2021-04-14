@@ -213,6 +213,7 @@ async def show_queue(ctx, queue = queue):
 
 @client.command(aliases=["Skip",'sk','next'])
 async def skip(ctx, queue = queue):
+    global loop
     song_there = os.path.isfile("song.mp3")
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
     if voice.is_playing():
@@ -220,7 +221,11 @@ async def skip(ctx, queue = queue):
         os.remove("song.mp3")
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([queue[0]])
-                
+                if loop == True:
+                    queue.append(queue[0])
+                    queue.remove(queue[0])
+                else:
+                    queue.remove(queue[0])  
         for file in os.listdir("./"):
             if file.endswith("mp3"):
                 os.rename(file, "song.mp3")
@@ -233,7 +238,11 @@ async def skip(ctx, queue = queue):
             return
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([queue[0]])
-                queue.remove(queue[0]) 
+                if loop == True:
+                    queue.append(queue[0])
+                    queue.remove(queue[0])
+                else:
+                    queue.remove(queue[0])  
         for file in os.listdir("./"):
             if file.endswith("mp3"):
                 os.rename(file, "song.mp3")
@@ -241,19 +250,19 @@ async def skip(ctx, queue = queue):
     voice.play(discord.FFmpegPCMAudio("song.mp3"))
 
 @client.command(aliases=["what?"])
-async def what(ctx,loop = loop):
+async def what(ctx):
+    global loop
     await ctx.send(f'loop is {loop}')
 
 @client.command(aliases=["lo"])
-async def _loop(ctx, loop = loop):
+async def _loop(ctx):
+    global loop
     if loop == False:
-        loop = True
+        loop = True;
         await ctx.send("Now Looping Queue")
     elif loop == True:
-        loop = False
+        loop = False;
         await ctx.send("Stopped Looping Queue")
-    else:
-        loop = True
 
 @client.command(aliases=["c"])
 async def clear(ctx):
@@ -262,7 +271,7 @@ async def clear(ctx):
 
 @client.command(aliases=["p"])
 async def play(ctx, url = "0", ydl_opts = ydl_opts, queue = queue):
-    
+    global loop
     if url == "0":
         print(" ")
     else:
@@ -298,7 +307,11 @@ async def play(ctx, url = "0", ydl_opts = ydl_opts, queue = queue):
     else:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([queue[0]])
-                queue.remove(queue[0])
+                if loop == True:
+                    queue.append(queue[0])
+                    queue.remove(queue[0])
+                else:
+                    queue.remove(queue[0])          
         for file in os.listdir("./"):
             if file.endswith("mp3"):
                 os.rename(file, "song.mp3")
