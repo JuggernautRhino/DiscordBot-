@@ -161,7 +161,7 @@ async def urban_dict(ctx,ba = "",baa="0",baaa="0",baaaa="0"):
         ba = ba +"%20"+baa+"%20"+baaa+"%20"+baaaa
 
     embed.description = "[The Urban Dictionary]("f'https://www.urbandictionary.com/define.php?term={str(ba)}'")\nThe urban dictionary!"
-    embed.set_image(url = "https://commons.wikimedia.org/wiki/File:UD_logo-01.svg")
+    embed.set_image(url = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/UD_logo-01.svg/768px-UD_logo-01.svg.png")
     await ctx.send(embed = embed)
 
 
