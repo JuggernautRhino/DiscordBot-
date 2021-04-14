@@ -4,6 +4,7 @@ from discord.ext import commands
 import requests
 import json
 from keep_alive import keep_alive
+from Functions import reverse, get_alot_quotes, get_quote, get_quote_today
 from discord.utils import get
 import youtube_dl
 import random
@@ -26,34 +27,9 @@ ydl_opts = {
     }],
 }
 queue=["https://www.youtube.com/watch?v=0lhhrUuw2N8"]
+
 loop = False
 
-
-def reverse(string):
-    revstring = ''
-    index = len(string)
-    while index > 0:
-        revstring += string[index -1]
-        index = index -1
-    return revstring 
-    
-def get_quote():
-  response = requests.get("https://zenquotes.io/api/random")
-  json_data = json.loads(response.text)
-  quote = json_data[0]['q'] + " -" + json_data[0]['a']
-  return(quote)
-
-def get_quote_today():
-  response = requests.get("https://zenquotes.io/api/today")
-  json_data = json.loads(response.text)
-  quote = json_data[0]['q'] + " -" + json_data[0]['a']
-  return(quote)
-
-def get_alot_quotes():
-  response = requests.get("https://zenquotes.io/api/quotes")
-  json_data = json.loads(response.text)
-  quote = json_data[0]['q'] + " -" + json_data[0]['a']
-  return(quote)
 
 
 @client.event
@@ -265,20 +241,19 @@ async def skip(ctx, queue = queue):
     voice.play(discord.FFmpegPCMAudio("song.mp3"))
 
 @client.command(aliases=["what?"])
-async def what(ctx, loop = loop):
+async def what(ctx,loop = loop):
     await ctx.send(f'loop is {loop}')
 
 @client.command(aliases=["lo"])
-async def loop(ctx, loop = loop):
+async def _loop(ctx, loop = loop):
     if loop == False:
         loop = True
         await ctx.send("Now Looping Queue")
     elif loop == True:
-        loop == False
+        loop = False
         await ctx.send("Stopped Looping Queue")
     else:
-        await ctx.send("somehow you've fucked the code up. You shithead")
-    return loop
+        loop = True
 
 @client.command(aliases=["c"])
 async def clear(ctx):
