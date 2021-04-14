@@ -35,6 +35,7 @@ loop = False
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="*help"), status = discord.Status.online)
+    queue.clear()
     print('We have logged in as {0.user}'.format(client))
 
 @client.group(invoke_without_command = True)
