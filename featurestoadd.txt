@@ -1,5 +1,5 @@
-a WORKING play command(suprisingly, its done)
-a queue command
-bitcoin(done)
 more crypto currencies
 algerand 
+autoplay
+I should probably add a playlist/spotify feature
+
