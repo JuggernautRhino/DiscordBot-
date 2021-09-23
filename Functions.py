@@ -1,6 +1,7 @@
 import requests
 import json
 import yt_search
+import asyncio
 
 def reverse(string):
     revstring = ''
@@ -50,9 +51,13 @@ def make_a_word(b1,b2,b3,b4,b5,b6):
     return ba
 
 
-def _search(b1,b2 = "0",b3 = "0",b4 = "0",b5 = "0",b6 = "0"):
+def _search(b1 = "0",b2 = "0",b3 = "0",b4 = "0",b5 = "0",b6 = "0",ctx="0",queues="0"):
     yt = yt_search.build("AIzaSyBNsZ6TUJVBP61YAUtvoOwh28mtSxWlC3I")
     term = make_a_word(b1,b2,b3,b4,b5,b6)
+    if term == "0":
+        serverid = ctx.message.guild.id
+        term = queues[serverid][0]
+        print("hi")
     search_result = yt.search(term, sMax=1, sType=["video"])
     url = (search_result.videoId)
     title = (search_result.title)
@@ -60,3 +65,4 @@ def _search(b1,b2 = "0",b3 = "0",b4 = "0",b5 = "0",b6 = "0"):
     fullurl = yturl(url)
     print(f"Person is adding this song to queue: {fullurl}, with the term: {term}")
     return fullurl, title
+

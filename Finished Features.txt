@@ -2,3 +2,4 @@ a WORKING play command(suprisingly, its done)
 a queue command     (DONE)
 bitcoin(done)
 yt search (DONE)
+Feature to for different servers playing music

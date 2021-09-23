@@ -1,0 +1,13 @@
+        """
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([queue[0]])
+                if loop == True:
+                    queue.append(queue[0])
+                    queue.remove(queue[0])
+                else:
+                    queue.remove(queue[0])          
+        for file in os.listdir("./"):
+            if file.endswith("mp3"):
+                os.rename(file, "song.mp3")
+"""
+
