@@ -115,6 +115,11 @@ async def _yas(ctx, *, words):
     words = reverse(words)
     await ctx.send(words)
 
+@client.command()
+async def spam(ctx):
+        while True:
+            hi = "ElQuacker#6921"
+            await discord.hi.send("BTD6 WITH ME AND HARRY")
 
 @client.command(aliases=['inspire', 'Inspire'])
 async def _inspire(ctx):
@@ -355,16 +360,7 @@ async def test(ctx):
 
 
 @client.command(aliases=["p"])
-async def play(ctx,
-               b1="0",
-               b2="0",
-               b3="0",
-               b4="0",
-               b5="0",
-               b6="0",
-               ydl_opts=ydl_opts,
-               queue=queue,
-               FFMPEG_OPTIONS=FFMPEG_OPTIONS):
+async def play(ctx,b1="0",b2="0",b3="0",b4="0",b5="0",b6="0",ydl_opts=ydl_opts,queue=queue,FFMPEG_OPTIONS=FFMPEG_OPTIONS):
     serverid = ctx.message.guild.id
     try:
         url, title = _search(b1, b2, b3, b4, b5, b6,ctx,queues)
@@ -470,8 +466,6 @@ async def on_message_delete(message):
 
 @client.command(name='snipe', aliases=["reverse", "Reverse"])
 async def snipe(ctx):
-    user = str(ctx.message.author)
-    if user in allow:
         channel = ctx.channel
         try:  #This piece of code is run if the bot finds anything in the dictionary
             em = discord.Embed(name=f"Last deleted message in #{channel.name}",
@@ -483,8 +477,6 @@ async def snipe(ctx):
         except:  #This piece of code is run if the bot doesn't find anything in the dictionary
             await ctx.send(
                 f"There are no recently deleted messages in #{channel.name}")
-    else:
-        await ctx.send("woah dude, no")
 
 
 @client.command(aliases=["list"])

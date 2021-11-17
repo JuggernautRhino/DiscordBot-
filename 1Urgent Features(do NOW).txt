@@ -1,2 +1,3 @@
 A FEATURE TO STOP HOUR REMIXES COMING THROUGH
 autoplay
+add a playlist feature
